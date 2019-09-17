@@ -1,5 +1,7 @@
 'use strict';
 
+const emails = require('../../../assets/email');
+
 /**
  * Lifecycle callbacks for the `Order` model.
  */
@@ -20,7 +22,7 @@ module.exports = {
   // After fetching a value.
   // Fired after a `fetch` operation.
   // afterFetch: async (model, response, options) => {},
-  
+
   // Before fetching all values.
   // Fired before a `fetchAll` operation.
   // beforeFetchAll: async (model, columns, options) => {},
@@ -35,7 +37,20 @@ module.exports = {
 
   // After creating a value.
   // Fired after an `insert` query.
-  // afterCreate: async (model, attrs, options) => {},
+  afterCreate: async model => {
+    await strapi.plugins['email'].services.email.send({
+      to: model.attributes.Email,
+      subject: emails.orderConfirmation['de'].subject,
+      text: emails.orderConfirmation['de'].text(model.attributes),
+      html: emails.orderConfirmation['de'].html(model.attributes),
+    });
+    await strapi.plugins['email'].services.email.send({
+      to: 'notify.schnelle_brillen@fastmail.com',
+      subject: emails.orderNotification['de'].subject,
+      text: emails.orderNotification['de'].text(model.attributes),
+      html: emails.orderNotification['de'].html(model.attributes),
+    });
+  },
 
   // Before updating a value.
   // Fired before an `update` query.
