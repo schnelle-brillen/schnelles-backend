@@ -1,0 +1,23 @@
+{
+  "connection": "default",
+  "collectionName": "quotes",
+  "info": {
+    "name": "quote",
+    "description": ""
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "comment": ""
+  },
+  "attributes": {
+    "img": {
+      "model": "file",
+      "via": "related",
+      "plugin": "upload"
+    },
+    "text": {
+      "type": "text"
+    }
+  }
+}

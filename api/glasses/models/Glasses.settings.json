@@ -1,0 +1,45 @@
+{
+  "connection": "default",
+  "collectionName": "glasses",
+  "info": {
+    "name": "glasses",
+    "description": "The fastest glasses in your country... Earth I mean!"
+  },
+  "options": {
+    "increments": true,
+    "timestamps": [
+      "created_at",
+      "updated_at"
+    ],
+    "comment": ""
+  },
+  "attributes": {
+    "name": {
+      "type": "string"
+    },
+    "speed": {
+      "type": "integer"
+    },
+    "image": {
+      "model": "file",
+      "via": "related",
+      "plugin": "upload"
+    },
+    "description": {
+      "type": "text"
+    },
+    "salesLink": {
+      "type": "string"
+    },
+    "isBuyable": {
+      "type": "boolean"
+    },
+    "price": {
+      "type": "decimal"
+    },
+    "orders": {
+      "collection": "order",
+      "via": "glasses"
+    }
+  }
+}

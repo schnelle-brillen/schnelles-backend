@@ -1,0 +1,49 @@
+{
+  "connection": "default",
+  "collectionName": "orders",
+  "info": {
+    "name": "order",
+    "description": ""
+  },
+  "options": {
+    "increments": true,
+    "timestamps": [
+      "created_at",
+      "updated_at"
+    ],
+    "comment": ""
+  },
+  "attributes": {
+    "Firstname": {
+      "type": "string"
+    },
+    "Lastname": {
+      "type": "string"
+    },
+    "Email": {
+      "type": "string"
+    },
+    "Address": {
+      "type": "string"
+    },
+    "Housenr": {
+      "type": "string"
+    },
+    "City": {
+      "type": "string"
+    },
+    "Zip": {
+      "maxLength": 6,
+      "minLength": 4,
+      "type": "string"
+    },
+    "glasses": {
+      "collection": "glasses",
+      "via": "orders",
+      "dominant": true
+    },
+    "PaymentInfo": {
+      "type": "string"
+    }
+  }
+}
